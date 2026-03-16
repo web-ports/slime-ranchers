@@ -7,7 +7,7 @@ i just edited it a bit to make it better for gn-math
 <html lang="en-us">
 
 <head>
-    <base href="https://cdn.jsdelivr.net/gh/web-ports/slime-ranchers@f96acb80c79862f0ef3debf82f29e16609b804fb/">
+    <base href="https://cdn.jsdelivr.net/gh/web-ports/slime-ranchers@f0c5856ac43cf0cfbab4c58139282fc75f9b1861/">
     <meta charset="utf-8">
     <title>Slime Rancher Decompiled v0.2.1</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
@@ -30,6 +30,21 @@ i just edited it a bit to make it better for gn-math
     <script src="TemplateData/responsive.js"></script>
 </body>
 <script>
+
+    const ogxhr = window.XMLHttpRequest;
+
+    function xhrfunc() {
+        const xhr = new ogxhr();
+        const open = xhr.open;
+        xhr.open = function(method, url, ...rest) {
+            if (url.includes("blob:")) {
+                return open.call(this, method, "blob:"+url.split("blob:")[1], ...rest);
+            }
+            return open.call(this, method, url, ...rest);
+        };
+        return xhr;
+    }
+    window.XMLHttpRequest = xhrfunc;
 
     var loadingText = document.querySelector("#loading-text");
 
