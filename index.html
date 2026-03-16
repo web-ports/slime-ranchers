@@ -7,6 +7,7 @@ i just edited it a bit to make it better for gn-math
 <html lang="en-us">
 
 <head>
+    <base href="https://cdn.jsdelivr.net/gh/web-ports/slime-ranchers@latest/">
     <meta charset="utf-8">
     <title>Slime Rancher Decompiled v0.2.1</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
@@ -27,7 +28,6 @@ i just edited it a bit to make it better for gn-math
         <div id="gameContainer" style="width: 960px; height: 600px"></div>
     </div>
     <script src="TemplateData/responsive.js"></script>
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"fbaa20dae499425ebc1908d1e312829f","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 <script>
     const ogxhr = window.XMLHttpRequest;
@@ -68,7 +68,7 @@ i just edited it a bit to make it better for gn-math
             chunks.push(value);
 
             let mbDone = (loadedBytes / (1024 * 1024)).toFixed(2);
-            let mbTotal = '92.01';
+            let mbTotal = '54.5';
             loadingText.innerHTML = `LOADING... ${mbDone} MB / ${mbTotal} MB`;
         }
 
@@ -110,25 +110,16 @@ i just edited it a bit to make it better for gn-math
 
 
     (async () => {
-        const allParts = [
-            ...getParts("Build/slimeBUILDS.data", 1, 4),
-            ...getParts("Build/slimeBUILDS.wasm", 1, 2)
-        ];
-
-
-        const [dataUrl, wasmUrl] = await Promise.all([
-            mergeFiles(getParts("Build/slimeBUILDS.data", 1, 4)),
-            mergeFiles(getParts("Build/slimeBUILDS.wasm", 1, 2))
+        const [dataUrl] = await Promise.all([
+            mergeFiles(getParts("Build/slimeBUILDS.data", 1, 3)),
         ]);
-        window.dataUrll = dataUrl;
-        window.wasmUrll = wasmUrl;
 
         const json = {
             "companyName": "Snubs",
             "productName": "Slime Rancher Prototype",
             "dataUrl": dataUrl,
-            "wasmCodeUrl": wasmUrl,
-            "wasmFrameworkUrl": "slimeBUILDS.framework.js",
+            "wasmCodeUrl": "Build/slimeBUILDS.wasm",
+            "wasmFrameworkUrl": "Build/slimeBUILDS.framework.js",
             "TOTAL_MEMORY": 536870912,
             "graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
             "webglContextAttributes": {
