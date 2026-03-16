@@ -7,7 +7,7 @@ i just edited it a bit to make it better for gn-math
 <html lang="en-us">
 
 <head>
-    <base href="https://cdn.jsdelivr.net/gh/web-ports/slime-ranchers@latest/">
+    <base href="https://cdn.jsdelivr.net/gh/web-ports/slime-ranchers@f96acb80c79862f0ef3debf82f29e16609b804fb/">
     <meta charset="utf-8">
     <title>Slime Rancher Decompiled v0.2.1</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
@@ -30,22 +30,6 @@ i just edited it a bit to make it better for gn-math
     <script src="TemplateData/responsive.js"></script>
 </body>
 <script>
-    const ogxhr = window.XMLHttpRequest;
-
-    function xhrfunc() {
-        const xhr = new ogxhr();
-        const open = xhr.open;
-        xhr.open = function(method, url, ...rest) {
-            if (url.includes("version.txt")) {
-                return open.call(this, method, "updates/version.txt", ...rest);
-            } else if (url.includes("slime.txt")) {
-                return open.call(this, method, "updates/slime.txt", ...rest);
-            }
-            return open.call(this, method, url, ...rest);
-        };
-        return xhr;
-    }
-    window.XMLHttpRequest = xhrfunc;
 
     var loadingText = document.querySelector("#loading-text");
 
@@ -118,8 +102,8 @@ i just edited it a bit to make it better for gn-math
             "companyName": "Snubs",
             "productName": "Slime Rancher Prototype",
             "dataUrl": dataUrl,
-            "wasmCodeUrl": "Build/slimeBUILDS.wasm",
-            "wasmFrameworkUrl": "Build/slimeBUILDS.framework.js",
+            "wasmCodeUrl": "slimeBUILDS.wasm",
+            "wasmFrameworkUrl": "slimeBUILDS.framework.js",
             "TOTAL_MEMORY": 536870912,
             "graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
             "webglContextAttributes": {
